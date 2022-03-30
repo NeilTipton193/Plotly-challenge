@@ -4,7 +4,7 @@
 //function that populates metadata
 function demographicInfo(sample)
 {
-    console.log(sample);
+    //console.log(sample);
     
     // load data from samples.json
     d3.json("samples.json").then((data) => {
@@ -34,9 +34,51 @@ function demographicInfo(sample)
 
 //function that builds graphs
 function buildBarChart(sample){
-    console.log(sample);
-    let data = d3.json("samples.json");
-    console.log(data);
+    // console.log(sample);
+    // let data = d3.json("samples.json");
+    // console.log(data);
+
+    // load data from samples.json
+    d3.json("samples.json").then((data) => {
+        // retrieve sample data
+        let sampleData = data.samples;
+        //console.log(sampleData);
+
+        //filter based on value of sample
+        let result = sampleData.filter(sampleResult >= sampleResult.id == sample);
+        //console.log(result);
+
+        //access index 0 from array
+        let resultData = result[0];
+        console.log(resultData);
+
+        // get otu_ids, labels and sample values
+        let otu_ids = resultData.otu_ids;
+        let otu_labels = resultData.otu_labels;
+        let sample_values = resultData.sample_values;
+        // console.log(otu_ids);
+        // console.log(otu_labels);
+        // console.log(sample_values);
+
+        // build the bar chart
+        //get the yticks
+        let yticks = otu_ids.slice(0,10).map(id => `OTU ${id}`);
+        let xticks = sample_values.slice(0,10);
+        let textLabels = otu_labels.slice(0,10);
+
+        let barChart = {
+            y: yticks.reverse(),
+            x: xticks.reverse(),
+            text: textLabels.reverse(),
+            type: "bar",
+            orientation: "h"
+        }
+        let layout = {
+            title: "The Top 10 Belly Button Bacteria"
+        }
+
+        Plotly.newPlot("bar",[barChart],layout)
+    });
 }
 
 // function to initialize dashboard
