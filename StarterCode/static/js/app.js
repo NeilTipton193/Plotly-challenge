@@ -33,7 +33,11 @@ function demographicInfo(sample)
 }
 
 //function that builds graphs
-
+function buildBarChart(sample){
+    console.log(sample);
+    let data = d3.json("samples.json");
+    console.log(data);
+}
 
 // function to initialize dashboard
 function initialize()
@@ -59,6 +63,8 @@ function initialize()
 
         //call the function to build the metadata
         demographicInfo(sample1);
+        //build bar chart
+        buildBarChart(sample1);
     });
      
     // pass in the info for the first sample when initialized
@@ -70,6 +76,8 @@ function optionChanged(item)
 {
     // call update to metadata
     demographicInfo(item);
+    // build bar chart
+    buildBarChart(item);
 }
 
 // call function
