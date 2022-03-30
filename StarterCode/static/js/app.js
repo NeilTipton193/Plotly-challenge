@@ -56,9 +56,7 @@ function buildBarChart(sample){
         let otu_ids = resultData.otu_ids;
         let otu_labels = resultData.otu_labels;
         let sample_values = resultData.sample_values;
-        // console.log(otu_ids);
-        // console.log(otu_labels);
-        // console.log(sample_values);
+
 
         // build the bar chart
         //get the yticks
@@ -81,6 +79,55 @@ function buildBarChart(sample){
     });
 }
 
+// function to build the bubble chart
+function buildBubbleChart(sample)
+{
+ // console.log(sample);
+    // let data = d3.json("samples.json");
+    // console.log(data);
+
+    // load data from samples.json
+    d3.json("samples.json").then((data) => {
+        // retrieve sample data
+        let sampleData = data.samples;
+        //console.log(sampleData);
+
+        //filter based on value of sample
+        let result = sampleData.filter(sampleResult >= sampleResult.id == sample);
+        //console.log(result);
+
+        //access index 0 from array
+        let resultData = result[0];
+        console.log(resultData);
+
+        // get otu_ids, labels and sample values
+        let otu_ids = resultData.otu_ids;
+        let otu_labels = resultData.otu_labels;
+        let sample_values = resultData.sample_values;
+
+
+        // build the bubble chart
+
+        let bubbleChart = {
+            y: sample_values,
+            x: otu_ids,
+            text: otu_labels,
+            mode: "markers",
+            marker: {
+                size: sample_values,
+                color: otu_ids,
+                colorscale: "Earth"
+            }
+        }
+        let layout = {
+            title: "Bacteria Cultures/Sample",
+            hovermode: "closest",
+            xaxis: {title: "OTU ID"}
+        }
+
+        Plotly.newPlot("bubble",[bubbleChart],layout)
+    });
+}
 // function to initialize dashboard
 function initialize()
 {
@@ -107,6 +154,8 @@ function initialize()
         demographicInfo(sample1);
         //build bar chart
         buildBarChart(sample1);
+        //build bubble chart
+        buildBubbleChart(sample1);
     });
      
     // pass in the info for the first sample when initialized
@@ -120,6 +169,8 @@ function optionChanged(item)
     demographicInfo(item);
     // build bar chart
     buildBarChart(item);
+    //build bubble chart
+    buildBubbleChart(item);
 }
 
 // call function
