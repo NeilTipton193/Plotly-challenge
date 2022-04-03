@@ -145,7 +145,9 @@ function initialize()
         // use for each to create options
         // for selector
         sampleNames.forEach((sample) => {
-            select.append("option").text(sample).property("value", sample);
+            select.append("option")
+                .text(sample)
+                .property("value", sample);
         });
         
         let sample1 = sampleNames[0];
