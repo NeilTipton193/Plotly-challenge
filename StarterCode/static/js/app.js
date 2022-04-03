@@ -27,7 +27,7 @@ function demographicInfo(sample)
         Object.entries(resultData).forEach(([key, value]) =>
         {
             // add to select panel 
-            d3.select("#sample-metadata").append("<h5>").text(`${key}: ${value}`);
+            d3.select("#sample-metadata").append("h5").text(`${key}: ${value}`);
         })
     });
 }
@@ -45,12 +45,12 @@ function buildBarChart(sample){
         //console.log(sampleData);
 
         //filter based on value of sample
-        let result = sampleData.filter(sampleResult >= sampleResult.id == sample);
+        let result = sampleData.filter(sampleResult => sampleResult.id == sample);
         //console.log(result);
 
         //access index 0 from array
         let resultData = result[0];
-        console.log(resultData);
+        //console.log(resultData);
 
         // get otu_ids, labels and sample values
         let otu_ids = resultData.otu_ids;
@@ -93,12 +93,12 @@ function buildBubbleChart(sample)
         //console.log(sampleData);
 
         //filter based on value of sample
-        let result = sampleData.filter(sampleResult >= sampleResult.id == sample);
+        let result = sampleData.filter(sampleResult => sampleResult.id == sample);
         //console.log(result);
 
         //access index 0 from array
         let resultData = result[0];
-        console.log(resultData);
+        //console.log(resultData);
 
         // get otu_ids, labels and sample values
         let otu_ids = resultData.otu_ids;
@@ -158,7 +158,7 @@ function initialize()
         buildBubbleChart(sample1);
     });
      
-    // pass in the info for the first sample when initialized
+    
 
 }
 
