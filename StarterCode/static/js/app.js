@@ -7,7 +7,7 @@ function demographicInfo(sample)
     //console.log(sample);
     
     // load data from samples.json
-    d3.json("../../../data/samples.json").then((data) => {
+    d3.json("samples.json").then((data) => {
         // retrieve metedata
         let metaData = data.metadata;
         //console.log(metaData);
@@ -39,7 +39,7 @@ function buildBarChart(sample){
     // console.log(data);
 
     // load data from samples.json
-    d3.json("../../../data/samples.json").then((data) => {
+    d3.json("samples.json").then((data) => {
         // retrieve sample data
         let sampleData = data.samples;
         //console.log(sampleData);
@@ -87,7 +87,7 @@ function buildBubbleChart(sample)
     // console.log(data);
 
     // load data from samples.json
-    d3.json("../../../data/samples.json").then((data) => {
+    d3.json("samples.json").then((data) => {
         // retrieve sample data
         let sampleData = data.samples;
         //console.log(sampleData);
@@ -137,7 +137,7 @@ function initialize()
     var select = d3.select("selDataset");
 
     // load data from samples.json
-    d3.json("../../../data/samples.json").then((data) => {
+    d3.json("samples.json").then((data) => {
         //use d3.json to get the data
         let sampleNames = data.names;
         //console.log(sampleNames);
