@@ -55,13 +55,13 @@ function buildBarChart(sample){
         // get otu_ids, labels and sample values
         let otu_ids = resultData.otu_ids;
         let otu_labels = resultData.otu_labels;
-        let sample_values = resultData.sample_values;
+        let sampleValues = resultData.sample_values;
 
 
         // build the bar chart
         //get the yticks
         let yticks = otu_ids.slice(0,10).map(id => `OTU ${id}`);
-        let xticks = sample_values.slice(0,10);
+        let xticks = sampleValues.slice(0,10);
         let textLabels = otu_labels.slice(0,10);
 
         let barChart = {
@@ -103,18 +103,18 @@ function buildBubbleChart(sample)
         // get otu_ids, labels and sample values
         let otu_ids = resultData.otu_ids;
         let otu_labels = resultData.otu_labels;
-        let sample_values = resultData.sample_values;
+        let sampleValues = resultData.sample_values;
 
 
         // build the bubble chart
 
         let bubbleChart = {
-            y: sample_values,
+            y: sampleValues,
             x: otu_ids,
             text: otu_labels,
             mode: "markers",
             marker: {
-                size: sample_values,
+                size: sampleValues,
                 color: otu_ids,
                 colorscale: "Earth"
             }
