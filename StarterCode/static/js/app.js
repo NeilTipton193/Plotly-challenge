@@ -134,7 +134,7 @@ function initialize()
     //let data = d3.json("samples.json");
     //console.log(data);
     // access dropdown selector from index.html
-    var select = d3.select("selDataset");
+    var select = d3.select("#selDataset");
 
     // load data from samples.json
     d3.json("samples.json").then((data) => {
